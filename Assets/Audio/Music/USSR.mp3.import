@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/USSR.mp3-315cc058b6f95230bbb6cdd764c9bf97.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/USSR.mp3"
+dest_files=[ "res://.import/USSR.mp3-315cc058b6f95230bbb6cdd764c9bf97.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

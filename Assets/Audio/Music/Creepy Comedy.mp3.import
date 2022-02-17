@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Creepy Comedy.mp3-2dafde8635d43a55d88180151813a855.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Creepy Comedy.mp3"
+dest_files=[ "res://.import/Creepy Comedy.mp3-2dafde8635d43a55d88180151813a855.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

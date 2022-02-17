@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Lobby/Color/Color_Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Lobby/Color/Color_Picker.gd" type="Script" id=2]
+
+[node name="Color_Picker" type="MarginContainer"]
+self_modulate = Color( 0.168627, 0.788235, 0.760784, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -343.0
+margin_bottom = -496.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 681.0
+margin_bottom = 104.0
+color = Color( 0.0313726, 0.145098, 0.145098, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 681.0
+margin_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 681.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 9.0
+margin_right = 681.0
+margin_bottom = 23.0
+text = "Color"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 27.0
+margin_right = 681.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 2
+
+[node name="Color_Button" parent="VBoxContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 335.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+color_number = 1
+
+[node name="Color_Button2" parent="VBoxContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 345.0
+margin_right = 680.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+color_number = 2
+
+[node name="Color_Button3" parent="VBoxContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 335.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 10, 0 )
+color_number = 3
+
+[node name="Color_Button4" parent="VBoxContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 345.0
+margin_top = 30.0
+margin_right = 680.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 10, 0 )
+color_number = 4

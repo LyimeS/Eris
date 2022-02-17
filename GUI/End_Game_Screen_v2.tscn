@@ -1,0 +1,210 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GUI/End_Game_Screen_v2.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Audio/Music/Lurking Sloth.mp3" type="AudioStream" id=2]
+
+[node name="End_Game_Screen_v2" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 310.0
+margin_top = 188.0
+margin_right = 714.0
+margin_bottom = 412.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 404.0
+margin_bottom = 200.0
+
+[node name="winner_pannel" type="MarginContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/HBoxContainer/winner_pannel"]
+margin_right = 200.0
+margin_bottom = 200.0
+color = Color( 0.196078, 0.2, 0.2, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/winner_pannel"]
+margin_right = 200.0
+margin_bottom = 200.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/winner_pannel/CenterContainer"]
+margin_left = 78.0
+margin_top = 84.0
+margin_right = 121.0
+margin_bottom = 116.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/winner_pannel/CenterContainer/VBoxContainer"]
+margin_right = 43.0
+margin_bottom = 14.0
+text = "winner"
+align = 1
+valign = 1
+
+[node name="score_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/winner_pannel/CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 43.0
+margin_bottom = 32.0
+text = "10"
+align = 1
+valign = 1
+
+[node name="players_pannel" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="players_list" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel"]
+margin_top = 1.0
+margin_right = 200.0
+margin_bottom = 198.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_2" type="MarginContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list"]
+margin_right = 200.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 200, 63 )
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_2"]
+margin_right = 200.0
+margin_bottom = 63.0
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_2"]
+margin_right = 200.0
+margin_bottom = 63.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_2/CenterContainer"]
+margin_left = 97.0
+margin_top = 15.0
+margin_right = 102.0
+margin_bottom = 47.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_2/CenterContainer/VBoxContainer"]
+margin_right = 5.0
+margin_bottom = 14.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="score_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_2/CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 5.0
+margin_bottom = 32.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="player_3" type="MarginContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list"]
+margin_top = 67.0
+margin_right = 200.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 200, 63 )
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3"]
+margin_right = 200.0
+margin_bottom = 63.0
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3"]
+margin_right = 200.0
+margin_bottom = 63.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/CenterContainer"]
+margin_left = 97.0
+margin_top = 15.0
+margin_right = 102.0
+margin_bottom = 47.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/CenterContainer/VBoxContainer"]
+margin_right = 5.0
+margin_bottom = 14.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="score_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 5.0
+margin_bottom = 32.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="player_4" type="MarginContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list"]
+margin_top = 134.0
+margin_right = 200.0
+margin_bottom = 197.0
+rect_min_size = Vector2( 200, 63 )
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4"]
+margin_right = 200.0
+margin_bottom = 63.0
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4"]
+margin_right = 200.0
+margin_bottom = 63.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/CenterContainer"]
+margin_left = 97.0
+margin_top = 15.0
+margin_right = 102.0
+margin_bottom = 47.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/CenterContainer/VBoxContainer"]
+margin_right = 5.0
+margin_bottom = 14.0
+text = "-"
+
+[node name="score_label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 5.0
+margin_bottom = 32.0
+text = "-"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 404.0
+margin_bottom = 224.0
+text = "RESTART"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )

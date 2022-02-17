@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/Objects/Object.gd" type="Script" id=1]
+[ext_resource path="res://Assets/sprites/star.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/SFX/powerUp7.ogg" type="AudioStream" id=3]
+
+[node name="FillLine" type="Node2D"]
+script = ExtResource( 1 )
+type = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+max_distance = 1000.0

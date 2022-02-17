@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lurking Sloth.mp3-8f7168e141d6e77be68e2325ba0046fa.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Lurking Sloth.mp3"
+dest_files=[ "res://.import/Lurking Sloth.mp3-8f7168e141d6e77be68e2325ba0046fa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

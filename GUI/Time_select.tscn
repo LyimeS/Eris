@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/Time_select.gd" type="Script" id=1]
+
+[node name="Control" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -853.0
+margin_bottom = -522.0
+rect_min_size = Vector2( 171, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 171.0
+margin_bottom = 78.0
+color = Color( 0.917647, 0.490196, 0.0627451, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 171.0
+margin_bottom = 78.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 9.0
+margin_top = 18.0
+margin_right = 161.0
+margin_bottom = 60.0
+columns = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/GridContainer"]
+margin_right = 74.0
+margin_bottom = 14.0
+text = "   Min"
+valign = 1
+
+[node name="Label3" type="Label" parent="CenterContainer/GridContainer"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 14.0
+text = "   Sec"
+valign = 1
+
+[node name="min_SpinBox" type="SpinBox" parent="CenterContainer/GridContainer"]
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+max_value = 59.0
+
+[node name="sec_SpinBox" type="SpinBox" parent="CenterContainer/GridContainer"]
+margin_left = 78.0
+margin_top = 18.0
+margin_right = 152.0
+margin_bottom = 42.0
+max_value = 59.0
+
+[connection signal="value_changed" from="CenterContainer/GridContainer/min_SpinBox" to="." method="_on_min_SpinBox_value_changed"]
+[connection signal="value_changed" from="CenterContainer/GridContainer/sec_SpinBox" to="." method="_on_sec_SpinBox_value_changed"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=4]
+light_mode = 1
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 425, 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 425, 36 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "only"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 425, 0 ), Vector2( 425, 36 ), Vector2( 425, 36 ), Vector2( 425, 0 ) ]
+}
+
+[node name="Notification" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -670.0
+margin_bottom = -555.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource( 3 )
+margin_right = 425.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notification_Text" type="Label" parent="Panel"]
+material = SubResource( 4 )
+margin_left = 8.0
+margin_top = 3.0
+margin_right = 414.0
+margin_bottom = 28.0
+text = "text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Panel")
+anims/RESET = SubResource( 5 )
+anims/only = SubResource( 6 )
