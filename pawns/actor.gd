@@ -23,7 +23,7 @@ func _ready():
 		print(name, "is not local player. player id: ", player_id)
 		$Camera2D.queue_free()
 	else:
-		print("setting camera to current. player: ", name, ". playerid: ", player_id)
+		#print("setting camera to current. player: ", name, ". playerid: ", player_id)
 		$Camera2D.current = true
 	if GlobalVariables.light_mode == true:
 		$Light2D.visible = false
@@ -66,7 +66,7 @@ func _process(delta):
 		
 
 remote func req_movement(rec_player_id, input_direction) -> void:
-	print("player ", rec_player_id, " requested to move")
+	#print("player ", rec_player_id, " requested to move")
 	var target_position = Grid.request_move(rec_player_id, input_direction)
 	if target_position:
 		rpc("move_to",target_position)

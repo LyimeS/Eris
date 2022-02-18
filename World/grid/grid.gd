@@ -30,7 +30,7 @@ func get_cell_pawn(coordinates): #not hard typed function
 	# called when hitting an object or player. doesn't detect walls. 
 	for node in get_children():
 		if world_to_map(node.position) == coordinates:
-			print("it has this node: ", node)
+			#print("it has this node: ", node)
 			return(node)
 
 # caled by the player (actor.gd)
@@ -59,7 +59,7 @@ func request_move(player_id, direction): #not hard typed function
 			var object_pawn = get_cell_pawn(cell_target)
 			print("object_type: ", object_pawn.object_type)
 			object_handling(object_pawn.object_type, cell_target, pawn)
-			print("object name: ", object_pawn.name )
+			#print("object name: ", object_pawn.name )
 			rpc("object_queue_free", cell_target)
 			return update_pawn_position(pawn, cell_start, cell_target)
 		ACTOR:
@@ -86,7 +86,7 @@ func sort_players() -> void:
 	for player in Network.players:
 		copy_players.append(player)
 	copy_players.shuffle()
-	print("shuffled list: ", copy_players)
+	#print("shuffled list: ", copy_players)
 	
 	for player_id in copy_players:
 		rpc("add_player", player_id)
@@ -109,6 +109,7 @@ sync func set_collisions() -> void:
 	print("setting collisions")
 	for child in get_children():
 		# this sets the sprite bellow players and set their collisions
+		# ^ not sure about that anymore
 		set_cellv(world_to_map(child.position), child.type)
 		print("position: ", child.position, ", child type: ", child.type)
 
@@ -118,7 +119,6 @@ func object_handling(object_type, cell_target, pawn):
 		"Vertical Fill":
 			#print("max_cell:  ",max_cell)
 			pawn.play_power_up()
-			print(pawn.has_method("set_has_light"))
 			for cell_y in range(max_cell.y + 1):
 				if get_cellv(Vector2(cell_target.x, cell_y)) == -1:
 					rpc("color_cell", Vector2(cell_target.x, cell_y), pawn.color_number)

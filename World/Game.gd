@@ -11,13 +11,13 @@ var music_list: Array = ["res://Assets/Audio/Music/USSR.mp3",
 func _ready():
 	if GlobalVariables.light_mode == true:
 		$CanvasModulate.queue_free()
-		print("removing ", GlobalVariables.object_type[4])
+		#print("removing ", GlobalVariables.object_type[4])
 		GlobalVariables.object_type.remove(4)
 	else:
 		$CanvasModulate.visible = true
 	
 	if Network.local_player_id == 1:
-		print("host picking music")
+		#print("host picking music")
 		set_music()
 
 
