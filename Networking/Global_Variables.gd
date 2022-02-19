@@ -26,6 +26,15 @@ func set_light_mode(value):
 	print("light mode: ",light_mode )
 	
 
+# time variables
+sync var minutes: int
+func set_match_time_minutes(value):
+	rset("minutes", value)
+
+sync var seconds: int
+func set_match_time_seconds(value):
+	rset("seconds", value)
+
 sync var match_time: int
 func set_match_time(value):
 	rset("match_time", value)

@@ -205,11 +205,15 @@ text = "Join Game"
 [node name="ItemList" parent="WaitingRoom/VBoxContainer/CenterContainer" index="0"]
 items = [ "Item 0", null, false ]
 
-[node name="min_SpinBox" parent="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Control/CenterContainer/GridContainer" index="2"]
-rounded = true
+[node name="ColorRect" parent="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box" index="0"]
+margin_bottom = 80.0
 
-[node name="sec_SpinBox" parent="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Control/CenterContainer/GridContainer" index="3"]
-rounded = true
+[node name="CenterContainer" parent="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box" index="1"]
+margin_bottom = 80.0
+
+[node name="GridContainer" parent="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box/CenterContainer" index="0"]
+margin_top = 19.0
+margin_bottom = 61.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -217,7 +221,6 @@ stream = ExtResource( 3 )
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/MarginContainer/CenterContainer/HBoxContainer2/NameEdit" to="." method="_on_NameEdit_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Panel_host/VBoxContainer/CenterContainer/HostButton" to="." method="_on_HostButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
-[connection signal="pressed" from="WaitingRoom/VBoxContainer/CenterContainer2/StartButton" to="." method="_on_StartButton_pressed"]
 
 [editable path="WaitingRoom"]
-[editable path="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Control"]
+[editable path="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box"]

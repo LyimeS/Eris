@@ -79,4 +79,7 @@ func sort_players_by_score() -> void:
 
 func _on_RestartButton_pressed() -> void:
 	print("--------------------------------------------------")
-	Network.start_game()
+	#Network.start_game()
+	$WaitingRoom.visible = true
+	$WaitingRoom.refresh_players(Network.players)
+	get_tree().call_group("HostOnly", "show")
