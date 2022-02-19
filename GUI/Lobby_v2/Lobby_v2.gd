@@ -57,7 +57,7 @@ func show_waiting_room() -> void:
 	sec_spinBox.value = 0
 	
 	if Network.local_player_id != 1:
-		print("disabling control")
+		#print("disabling control")
 		light_mode.disabled = true
 		min_spinBox.editable = false
 		sec_spinBox.editable = false
@@ -69,11 +69,11 @@ func _on_StartButton_pressed() -> void:
 	Network.start_game()
 
 func _on_Panel_host_mouse_entered():
-	print("entered")
+	#print("entered")
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0, 144, 231, 255)
 
 
 func _on_Panel_host_mouse_exited():
-	print("exited")
+	#print("exited")
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0.3, 0.3, 0.3, 1)
 
