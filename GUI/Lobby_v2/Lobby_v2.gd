@@ -39,7 +39,10 @@ func _on_JoinButton_pressed() -> void:
 	Network.selected_IP = selected_join_IP.text
 	Network.selected_port = int(selected_join_Port.text)
 	Network.connect_to_server()
-	show_waiting_room()
+	#show_waiting_room()
+	# warning-ignore:return_value_discarded
+	get_tree().connect("connected_to_server", self, "show_waiting_room")
+	$connecting_to_host.visible = true
 
 # save the name of the player everytime the LineEdit is changed
 func _on_NameEdit_text_changed(new_text) -> void:
@@ -48,6 +51,7 @@ func _on_NameEdit_text_changed(new_text) -> void:
 
 
 func show_waiting_room() -> void:
+	$connecting_to_host.visible = false
 	$WaitingRoom.popup_centered()
 	print(Network.players)
 	$WaitingRoom.refresh_players(Network.players)

@@ -167,5 +167,4 @@ func play_power_up() -> void:
 
 # caled by grid.gd, on object_handling
 func play_trap() -> void:
-	
 	$ItsATrapBino.play()
