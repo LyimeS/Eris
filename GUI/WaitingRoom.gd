@@ -8,7 +8,7 @@ func _ready() -> void:
 	light_mode.pressed = SaveGame.save_data["Light"]
 
 func refresh_players(players) -> void:
-	print("refreshing player list, to insert the players: ", players)
+	#print("refreshing player list, to insert the players: ", players)
 	PlayerList.clear()
 	
 	for player_id in players:
@@ -21,3 +21,8 @@ func _on_CheckButton_pressed() -> void:
 	GlobalVariables.set_light_mode(light_mode.pressed)
 	SaveGame.save_data["Light"] = light_mode.pressed
 	SaveGame.save_game()
+
+
+func _on_StartButton_pressed():
+	$VBoxContainer/CenterContainer3/HBoxContainer2/Time_box.set_timer()
+	Network.start_game()

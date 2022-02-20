@@ -13,6 +13,8 @@ sync var players: Dictionary = {}
 sync var player_data = {}
 signal ready_to_spawn
 
+var connected_to_server: bool = false
+
 #signal player_disconnected
 #signal server_disconnected
 
@@ -31,14 +33,14 @@ func create_server():
 	add_to_player_list()
 	print("creating server on port ", selected_port)
 
-
+# Called from Lobby
 func connect_to_server():
 	var peer = NetworkedMultiplayerENet.new()
 	# warning-ignore:return_value_discarded
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
 	peer.create_client(selected_IP, selected_port)
 	get_tree().network_peer = peer
-	print("connect to ", selected_IP, " on port ", selected_port)
+	print("connecting to ", selected_IP, " on port ", selected_port)
 	
 
 func add_to_player_list():
@@ -48,10 +50,11 @@ func add_to_player_list():
 
 
 func _connected_to_server():
+	connected_to_server = true
 	add_to_player_list()
 	rpc("_send_player_info", local_player_id, player_data)
 
-# called when a player connects to host.
+# called by the players when they connect to host.
 remote func _send_player_info(id, player_info):
 	players[id] = player_info
 	if local_player_id == 1:
@@ -60,7 +63,7 @@ remote func _send_player_info(id, player_info):
 		rpc("update_waiting_room")
 
 func _on_player_connected(id):
-	print("i'm here")
+	#print("i'm here")
 	if not get_tree().is_network_server(): #same as "not local_player_id == 1"
 		print(str(id) + " connected")
 

@@ -78,7 +78,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/CenterContainer3"]
-margin_left = 233.0
+margin_left = 232.0
 margin_right = 791.0
 margin_bottom = 80.0
 
@@ -112,34 +112,32 @@ margin_top = 18.0
 margin_right = 76.0
 margin_bottom = 58.0
 
-[node name="Control" parent="VBoxContainer/CenterContainer3/HBoxContainer2" instance=ExtResource( 3 )]
+[node name="Time_box" parent="VBoxContainer/CenterContainer3/HBoxContainer2" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 84.0
-margin_right = 254.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 170, 0 )
-
-[node name="ColorRect" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Control" index="0"]
-margin_right = 170.0
+margin_right = 255.0
 margin_bottom = 80.0
 
-[node name="CenterContainer" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Control" index="1"]
-margin_right = 170.0
+[node name="ColorRect" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Time_box" index="0"]
 margin_bottom = 80.0
 
-[node name="GridContainer" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Control/CenterContainer" index="0"]
+[node name="CenterContainer" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Time_box" index="1"]
+margin_bottom = 80.0
+
+[node name="GridContainer" parent="VBoxContainer/CenterContainer3/HBoxContainer2/Time_box/CenterContainer" index="0"]
 margin_top = 19.0
 margin_bottom = 61.0
 
 [node name="Color_Picker" parent="VBoxContainer/CenterContainer3/HBoxContainer2" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 258.0
-margin_right = 558.0
+margin_left = 259.0
+margin_right = 559.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 300, 0 )
 
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/HBoxContainer2/CenterContainer/VBoxContainer/CheckButton" to="." method="_on_CheckButton_pressed"]
 
-[editable path="VBoxContainer/CenterContainer3/HBoxContainer2/Control"]
+[editable path="VBoxContainer/CenterContainer3/HBoxContainer2/Time_box"]

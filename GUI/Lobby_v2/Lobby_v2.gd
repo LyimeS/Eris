@@ -7,9 +7,8 @@ onready var selected_host_Port: LineEdit = $MarginContainer/VBoxContainer/HBoxCo
 onready var selected_join_IP: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/PortEdit2
 onready var selected_join_Port: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/PortEdit
 onready var light_mode: CheckButton = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/CenterContainer/VBoxContainer/CheckButton
-onready var min_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Control/CenterContainer/GridContainer/min_SpinBox
-onready var sec_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Control/CenterContainer/GridContainer/sec_SpinBox
-
+onready var min_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box/CenterContainer/GridContainer/min_SpinBox
+onready var sec_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box/CenterContainer/GridContainer/sec_SpinBox
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +39,10 @@ func _on_JoinButton_pressed() -> void:
 	Network.selected_IP = selected_join_IP.text
 	Network.selected_port = int(selected_join_Port.text)
 	Network.connect_to_server()
-	show_waiting_room()
+	#show_waiting_room()
+	# warning-ignore:return_value_discarded
+	get_tree().connect("connected_to_server", self, "show_waiting_room")
+	$connecting_to_host.visible = true
 
 # save the name of the player everytime the LineEdit is changed
 func _on_NameEdit_text_changed(new_text) -> void:
@@ -49,12 +51,13 @@ func _on_NameEdit_text_changed(new_text) -> void:
 
 
 func show_waiting_room() -> void:
+	$connecting_to_host.visible = false
 	$WaitingRoom.popup_centered()
 	print(Network.players)
 	$WaitingRoom.refresh_players(Network.players)
 	
-	min_spinBox.value = 1
-	sec_spinBox.value = 0
+	#min_spinBox.value = 1
+	#sec_spinBox.value = 0
 	
 	if Network.local_player_id != 1:
 		#print("disabling control")
@@ -65,8 +68,8 @@ func show_waiting_room() -> void:
 		GlobalVariables.set_light_mode(SaveGame.save_data["Light"])
 
 
-func _on_StartButton_pressed() -> void:
-	Network.start_game()
+#func _on_StartButton_pressed() -> void:
+	#Network.start_game()
 
 func _on_Panel_host_mouse_entered():
 	#print("entered")
