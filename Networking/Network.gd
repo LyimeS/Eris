@@ -15,6 +15,10 @@ signal ready_to_spawn
 
 var connected_to_server: bool = false
 
+var queue_free_players: Array
+var host_missing: bool = false
+signal host_missing_signal
+
 #signal player_disconnected
 #signal server_disconnected
 
@@ -24,7 +28,8 @@ func _ready():
 	get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected")
 	# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_connected", self, "_on_player_connected")
-	
+	# warning-ignore:return_value_discarded
+	get_tree().connect("server_disconnected", self, "_on_server_disconnected")
 
 func create_server():
 	var peer = NetworkedMultiplayerENet.new()
@@ -68,8 +73,15 @@ func _on_player_connected(id):
 		print(str(id) + " connected")
 
 func _on_player_disconnected(id):
-	print(id, "player disconnected")
-	pass
+	print(id, " player disconnected")
+	if id != 1:
+		queue_free_players.append(id) 
+		get_tree().call_group("notify_players", "notify", id, "went missing")
+
+func _on_server_disconnected() -> void:
+		print("host is missing")
+		host_missing = true
+		emit_signal("host_missing_signal")
 
 sync func update_waiting_room():
 	get_tree().call_group("WaitingRoom", "refresh_players", players)
@@ -80,9 +92,11 @@ func set_player_color(player_id, color_number):
 
 # Called by Lobby._on_StartButton_pressed by the host
 func start_game():
-	# before the game starts, check if every player choose their color.
-	# in case they did not, set a color to them.
+	# remove all players that were disconnected
+	remove_disconnected_players()
 	
+	# before the game starts, check if every player choose their color.
+	# in case they did not, set a color to them:
 	for player in players:
 		if (not "color_number" in players[player]) or (players[player]["color_number"] == 0):
 			print("color not selected by player ", player)
@@ -129,8 +143,22 @@ remote func check_ready_to_start(rec_player_id) -> void:
 		emit_signal("ready_to_spawn")
 
 # called by grid._ready()
-func raise_ready_to_start():
+func raise_ready_to_start() -> void:
 	if local_player_id == 1:
 		check_ready_to_start(local_player_id)
 	else:
 		rpc_id(1, "check_ready_to_start", local_player_id)
+
+# called by the WaitingRoom and End_Game_Screen
+func remove_disconnected_players() -> void:
+	#print("remove players called")
+	if not queue_free_players.empty():
+		print("queue_free_players not empty")
+		for player_id in queue_free_players:
+			if player_id in players:
+				print("removing player ", player_id, " from Players list")
+				if players.erase(player_id):
+					print("OK")
+				else:
+					print("COULD NOT REMOVE ", player_id, ": ID NOT FOUND IN 'players'")
+	queue_free_players.clear()

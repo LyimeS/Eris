@@ -24,6 +24,10 @@ func _ready():
 	selected_join_Port.text = str(Network.DEFAULT_PORT )
 	selected_host_Port.text = str(Network.DEFAULT_PORT )
 	
+	# reset host_missing flag
+	Network.host_missing = false
+	# warning-ignore:return_value_discarded
+	Network.connect("host_missing_signal", self, "_on_host_missing")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -80,3 +84,6 @@ func _on_Panel_host_mouse_exited():
 	#print("exited")
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0.3, 0.3, 0.3, 1)
 
+func _on_host_missing():
+	$Host_Missing_Screen.visible = true
+	$Host_Missing_Screen.raise()

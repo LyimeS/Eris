@@ -30,6 +30,11 @@ func _ready():
 	
 	if restart_button.connect("button_down", self, "_on_RestartButton_pressed") != 0: print("COULD NOT CONNECT TO RESTART BUTTON")
 	
+	# check if host is still connected
+	Network.connect("host_missing_signal", self, "_on_host_missing")
+	if Network.host_missing:
+		$Host_Missing_Screen.visible = true
+		$CenterContainer/VBoxContainer/ButtonHome.visible = true
 
 
 func sort_players_by_score() -> void:
@@ -80,6 +85,17 @@ func sort_players_by_score() -> void:
 func _on_RestartButton_pressed() -> void:
 	print("--------------------------------------------------")
 	#Network.start_game()
+	Network.remove_disconnected_players()
 	$WaitingRoom.visible = true
 	$WaitingRoom.refresh_players(Network.players)
 	get_tree().call_group("HostOnly", "show")
+
+
+func _on_host_missing() -> void:
+	$Host_Missing_Screen.visible = true
+	$CenterContainer/VBoxContainer/ButtonHome.visible = true
+
+
+func _on_ButtonHome_pressed():
+	# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://GUI/Lobby_v2/Lobby_v2.tscn")

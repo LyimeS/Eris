@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://GUI/Lobby_v2/connecting_to_host_popup.gd" type="Script" id=1]
+[ext_resource path="res://Assets/sprites/character_v2_looking front.png" type="Texture" id=1]
 [ext_resource path="res://Assets/sprites/character_v2_eyes_closed.png" type="Texture" id=2]
-[ext_resource path="res://Assets/sprites/character_v2_looking front.png" type="Texture" id=3]
+[ext_resource path="res://GUI/Host_Missing_Screen.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=9]
 length = 0.001
@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 1 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -95,7 +95,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.20007, 0.917384 ), Vector2( 0.916712, 1.13495 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 // help: https://youtu.be/AOKZ3ZE9ohI
@@ -123,83 +123,110 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
-shader = SubResource( 13 )
+shader = SubResource( 8 )
 shader_param/OLDCOLOR1 = Color( 1, 1, 1, 1 )
 shader_param/OLDCOLOR2 = Color( 0.360784, 0.360784, 0.360784, 1 )
 shader_param/NEWCOLOR1 = Color( 0.956863, 0.533333, 0.0823529, 1 )
 shader_param/NEWCOLOR2 = Color( 0.839216, 0.00392157, 0.866667, 1 )
 
-[node name="connecting_to_host" type="Popup"]
+[node name="Host_Missing_Screen" type="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -704.0
-margin_bottom = -311.0
-script = ExtResource( 1 )
+margin_right = -721.0
+margin_bottom = -212.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.0
+margin_top = -189.0
+margin_right = 146.0
+margin_bottom = 189.0
+color = Color( 0.996078, 0.8, 0.505882, 1 )
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-margin_right = 320.0
-margin_bottom = 289.0
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+margin_left = 30.0
+margin_top = 57.0
+margin_right = 264.0
+margin_bottom = 254.0
 color = Color( 0.00784314, 0.0352941, 0.0941176, 1 )
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
-margin_right = 320.0
-margin_bottom = 66.0
-size_flags_vertical = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/MarginContainer2"]
-margin_right = 320.0
-margin_bottom = 66.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2/CenterContainer"]
-margin_left = 84.0
-margin_right = 236.0
-margin_bottom = 66.0
-size_flags_horizontal = 3
-
-[node name="null" type="Label" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 48.0
-text = "
-
-"
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 152.0
-margin_bottom = 66.0
-text = "  Connecting to server..."
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.115
+anchor_top = 0.087
+anchor_right = 0.354
+anchor_bottom = 0.244
+margin_left = 85.155
+margin_top = -3.756
+margin_right = 68.738
+margin_bottom = -50.672
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "MISSING"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Actor" type="Node2D" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer"]
-position = Vector2( 73, 131 )
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.115
+anchor_top = 0.087
+anchor_right = 0.354
+anchor_bottom = 0.244
+margin_left = 33.155
+margin_top = 264.244
+margin_right = 129.738
+margin_bottom = 217.328
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OUR HOST WENT MISSING"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actor" type="Node2D" parent="."]
+position = Vector2( 146, 158 )
 z_index = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer/Actor"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Actor"]
 anims/RESET = SubResource( 9 )
 anims/blink = SubResource( 10 )
 anims/bump = SubResource( 11 )
 anims/walk = SubResource( 12 )
 
-[node name="Tween" type="Tween" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer/Actor"]
+[node name="Tween" type="Tween" parent="Actor"]
 
-[node name="Sprite" type="Sprite" parent="MarginContainer/MarginContainer2/CenterContainer/VBoxContainer/Actor"]
-material = SubResource( 5 )
-position = Vector2( 1.43051e-06, -1.90735e-06 )
-texture = ExtResource( 3 )
+[node name="Sprite" type="Sprite" parent="Actor"]
+material = SubResource( 13 )
+position = Vector2( 0, -3.8147e-06 )
+texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -32, -32 )
+
+[node name="ButtonX" type="Button" parent="."]
+margin_left = 267.0
+margin_top = 10.0
+margin_right = 292.0
+margin_bottom = 30.0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonHome" type="Button" parent="."]
+margin_left = 94.0
+margin_top = 347.0
+margin_right = 194.0
+margin_bottom = 377.0
+text = "Back to Home"
+
+[connection signal="visibility_changed" from="." to="." method="_on_Host_Missing_Screen_visibility_changed"]
+[connection signal="pressed" from="ButtonX" to="." method="_on_ButtonX_pressed"]
+[connection signal="pressed" from="ButtonHome" to="." method="_on_ButtonHome_pressed"]

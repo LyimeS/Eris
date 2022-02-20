@@ -45,9 +45,8 @@ margin_bottom = 45.0
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/CenterContainer"]
 margin_left = 412.0
-margin_top = 13.0
 margin_right = 612.0
-margin_bottom = 13.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 200, 0 )
 items = [ "Item 0", null, false ]
 auto_height = true
@@ -137,7 +136,27 @@ margin_right = 559.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 300, 0 )
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+visible = false
+margin_top = 145.0
+margin_right = 1024.0
+margin_bottom = 149.0
+
+[node name="CenterContainer4" type="CenterContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 145.0
+margin_right = 1024.0
+margin_bottom = 165.0
+
+[node name="ButtonHome" type="Button" parent="VBoxContainer/CenterContainer4"]
+margin_left = 461.0
+margin_right = 563.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+text = "Back to Home"
+
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/HBoxContainer2/CenterContainer/VBoxContainer/CheckButton" to="." method="_on_CheckButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer4/ButtonHome" to="." method="_on_ButtonHome_pressed"]
 
 [editable path="VBoxContainer/CenterContainer3/HBoxContainer2/Time_box"]

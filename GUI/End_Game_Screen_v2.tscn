@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/End_Game_Screen_v2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Music/Lurking Sloth.mp3" type="AudioStream" id=2]
 [ext_resource path="res://GUI/WaitingRoom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/Host_Missing_Screen.tscn" type="PackedScene" id=4]
 
 [node name="End_Game_Screen_v2" type="Control"]
 anchor_right = 1.0
@@ -207,7 +208,27 @@ margin_right = 404.0
 margin_bottom = 224.0
 text = "RESTART"
 
+[node name="ButtonHome" type="Button" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 228.0
+margin_right = 404.0
+margin_bottom = 248.0
+text = "Back to Home"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
 [node name="WaitingRoom" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Host_Missing_Screen" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -151.5
+margin_top = -194.0
+margin_right = 151.5
+margin_bottom = 194.0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonHome" to="." method="_on_ButtonHome_pressed"]
