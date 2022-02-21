@@ -1,9 +1,45 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/End_Game_Screen_v2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Music/Lurking Sloth.mp3" type="AudioStream" id=2]
 [ext_resource path="res://GUI/WaitingRoom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Host_Missing_Screen.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+// help: https://youtu.be/AOKZ3ZE9ohI
+// help: https://youtu.be/zpIjme5Ah7Q
+
+uniform vec4 OLDCOLOR1 : hint_color;
+uniform vec4 OLDCOLOR2 : hint_color;
+
+uniform vec4 NEWCOLOR1 : hint_color;
+uniform vec4 NEWCOLOR2 : hint_color;
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE, UV); // get current color of pixel
+	
+	// lets check that our current pixel colour is any of the OLDCOLORs we wish to swap
+	// if our pixel is an old colour then swap COLOR to NEWCOLOR
+	if (curr_color.a > 0.25){
+		COLOR = NEWCOLOR1;
+	}
+	if (curr_color.r > 0.45 && curr_color.g > 0.45 && curr_color.b > 0.45){
+		COLOR = NEWCOLOR1;
+	}
+	else{
+		COLOR = curr_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/OLDCOLOR1 = Color( 1, 1, 1, 1 )
+shader_param/OLDCOLOR2 = Color( 0.360784, 0.360784, 0.360784, 1 )
+shader_param/NEWCOLOR1 = Color( 0.956863, 0.533333, 0.0823529, 1 )
+shader_param/NEWCOLOR2 = Color( 0.839216, 0.00392157, 0.866667, 1 )
 
 [node name="End_Game_Screen_v2" type="Control"]
 anchor_right = 1.0
@@ -231,4 +267,11 @@ margin_top = -194.0
 margin_right = 151.5
 margin_bottom = 194.0
 
+[node name="Sprite" parent="Host_Missing_Screen/Actor" index="2"]
+material = SubResource( 9 )
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonHome" to="." method="_on_ButtonHome_pressed"]
+
+[editable path="WaitingRoom"]
+[editable path="WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box"]
+[editable path="Host_Missing_Screen"]

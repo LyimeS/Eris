@@ -8,6 +8,10 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	yield(get_tree().create_timer(3), "timeout") # kids, don't do this.
+	# ^ this fix a issue of host sending a RPC before clients finis loading this node
+	# it is not the correct way to fix this issue. again: don't do this.
+	
 	#print("GlobalVariables: ", GlobalVariables.seconds, " sec. ", GlobalVariables.minutes, " minutes")
 	if GlobalVariables.seconds == 0 and GlobalVariables.minutes == 0:
 		$CenterContainer/GridContainer/sec_SpinBox.value = 0

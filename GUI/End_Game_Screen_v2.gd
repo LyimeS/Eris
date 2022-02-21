@@ -31,6 +31,7 @@ func _ready():
 	if restart_button.connect("button_down", self, "_on_RestartButton_pressed") != 0: print("COULD NOT CONNECT TO RESTART BUTTON")
 	
 	# check if host is still connected
+	# warning-ignore:return_value_discarded
 	Network.connect("host_missing_signal", self, "_on_host_missing")
 	if Network.host_missing:
 		$Host_Missing_Screen.visible = true
