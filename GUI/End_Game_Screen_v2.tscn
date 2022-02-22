@@ -253,9 +253,14 @@ text = "Back to Home"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Music"
 
 [node name="WaitingRoom" parent="." instance=ExtResource( 3 )]
-visible = false
+
+[node name="ItemList" parent="WaitingRoom/VBoxContainer/CenterContainer" index="0"]
+margin_top = 13.0
+margin_bottom = 13.0
+items = [ "Item 0", null, false ]
 
 [node name="Host_Missing_Screen" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5

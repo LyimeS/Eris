@@ -34,3 +34,4 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 1 )
+bus = "Music"

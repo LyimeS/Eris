@@ -211,6 +211,8 @@ __meta__ = {
 
 [node name="PowerUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="ItsATrapBino" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
