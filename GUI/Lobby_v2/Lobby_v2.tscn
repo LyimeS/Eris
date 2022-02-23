@@ -212,6 +212,16 @@ items = [ "Item 0", null, false ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Music"
+
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.862745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="connecting_to_host" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -234,7 +244,6 @@ margin_right = 151.5
 margin_bottom = 194.0
 
 [node name="Settings" parent="." instance=ExtResource( 6 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

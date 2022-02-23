@@ -30,6 +30,7 @@ func _ready():
 	
 	var shader_color = GlobalVariables.SHADER_COLOR_LIST[Network.players[player_id]["color_number"]]
 	$Sprite.material.set_shader_param("NEWCOLOR1", shader_color)
+	
 
 # warning-ignore:unused_argument
 func _process(delta):
@@ -63,7 +64,6 @@ func _process(delta):
 			req_movement(player_id, input_direction)
 		else:
 			rpc_id(1, "req_movement", player_id, input_direction)
-		
 
 remote func req_movement(rec_player_id, input_direction) -> void:
 	#print("player ", rec_player_id, " requested to move")

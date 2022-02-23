@@ -14,6 +14,10 @@ onready var sec_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/H
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer.play()
+	AudioServer.set_bus_volume_db(0, SaveGame.save_data["Main_vol"])
+	AudioServer.set_bus_volume_db(1, SaveGame.save_data["Music_vol"])
+	AudioServer.set_bus_volume_db(2, SaveGame.save_data["VFX_vol"])
+	
 	#$MarginContainer/HBoxContainer/Panel_host/ColorRect.connect("mouse_entered", self, "_on_Panel_host_mouse_entered")
 	#$MarginContainer/HBoxContainer/Panel_host/ColorRect.connect("mouse_exited", self, "_on_Panel_host_mouse_exited")
 	#$HBoxContainer/Panel_host/ColorRect.color = Color(1, 0, 0, 1)
@@ -28,10 +32,21 @@ func _ready():
 	Network.host_missing = false
 	# warning-ignore:return_value_discarded
 	Network.connect("host_missing_signal", self, "_on_host_missing")
-
+	
+	# hide the overlay when pop-up is closed 
+	# warning-ignore:return_value_discarded
+	$Settings.connect("hide", self, "hide_pop_up")
+	# warning-ignore:return_value_discarded
+	$Host_Missing_Screen.connect("hide", self, "hide_pop_up")
+	# warning-ignore:return_value_discarded
+	$connecting_to_host.connect("hide", self, "hide_pop_up")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# warning-ignore:unused_argument
+func _process(delta):
+	if Input.is_action_just_pressed("ui_settings"):
+		$Blur.show()
+		$Settings.show()
 
 func _on_HostButton_pressed() -> void:
 	Network.selected_port = int(selected_host_Port.text)
@@ -46,7 +61,8 @@ func _on_JoinButton_pressed() -> void:
 	#show_waiting_room()
 	# warning-ignore:return_value_discarded
 	get_tree().connect("connected_to_server", self, "show_waiting_room")
-	$connecting_to_host.visible = true
+	$Blur.show()
+	$connecting_to_host.show()
 
 # save the name of the player everytime the LineEdit is changed
 func _on_NameEdit_text_changed(new_text) -> void:
@@ -55,7 +71,7 @@ func _on_NameEdit_text_changed(new_text) -> void:
 
 
 func show_waiting_room() -> void:
-	$connecting_to_host.visible = false
+	$connecting_to_host.hide()
 	$WaitingRoom.popup_centered()
 	print(Network.players)
 	$WaitingRoom.refresh_players(Network.players)
@@ -85,5 +101,9 @@ func _on_Panel_host_mouse_exited():
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0.3, 0.3, 0.3, 1)
 
 func _on_host_missing():
-	$Host_Missing_Screen.visible = true
+	$Blur.show()
+	$Host_Missing_Screen.show()
 	$Host_Missing_Screen.raise()
+
+func hide_pop_up():
+	$Blur.hide()
