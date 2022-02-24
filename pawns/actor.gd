@@ -50,6 +50,11 @@ func _process(delta):
 	else:
 		$Light2D.visible = true
 	
+	if Input.is_action_just_pressed("ui_settings"):
+		#$Camera2D/Blur.show()
+		$Camera2D/Settings.show()
+		pass
+	
 	if player_id == Network.local_player_id:
 		var input_direction = get_input_direction()
 		if not input_direction:

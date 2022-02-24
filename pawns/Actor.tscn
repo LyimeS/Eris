@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://pawns/actor.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/character_v2_looking front.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/others/light.png" type="Texture" id=4]
 [ext_resource path="res://Assets/sprites/character_v2_eyes_closed.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Audio/SFX/powerUp3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://GUI/Settings.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -208,6 +209,13 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Settings" parent="Camera2D" instance=ExtResource( 7 )]
+visible = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PowerUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
