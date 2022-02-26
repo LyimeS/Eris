@@ -1,5 +1,5 @@
 # Eris
-A simple multiplayer game for the Godot Engine 3.X
+A simple multiplayer game for the Godot Engine 3.4.X
 
 **Please note: (almost) everything you see in here is under construction**  
 **This is a game in development (just like this text), and contributions are welcome :)**
@@ -8,6 +8,7 @@ A simple multiplayer game for the Godot Engine 3.X
 ## Yet to be added:
 * More power ups: *Fill_Board*, *Block_Color*.
 * Animations \o/
+* Translations
 
 
 ## Yet to be fixed:
