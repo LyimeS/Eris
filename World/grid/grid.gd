@@ -63,9 +63,12 @@ func request_move(player_id, direction): #not hard typed function
 			rpc("object_queue_free", cell_target)
 			return update_pawn_position(pawn, cell_start, cell_target)
 		ACTOR:
-			var pawn_name = get_cell_pawn(cell_target).name
-			print("Cell %s contains %s" % [cell_target, pawn_name])
-			get_parent().get_node("LowerGrid").count_cells(1)
+			if get_cell_pawn(cell_target).name == null: #make sure the player is still there
+				print("actor null cell skipped")
+			else:
+				var pawn_name = get_cell_pawn(cell_target).name
+				print("Cell %s contains %s" % [cell_target, pawn_name])
+				get_parent().get_node("LowerGrid").count_cells(1)
 		OBSTACLE:
 			print("unforeseen obstacle at ", cell_target)
 	

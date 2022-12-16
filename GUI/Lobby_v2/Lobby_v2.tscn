@@ -67,6 +67,7 @@ margin_right = 346.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 4
+max_length = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 54.0
@@ -184,7 +185,7 @@ margin_bottom = 47.0
 text = "IP"
 align = 2
 
-[node name="PortEdit2" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer"]
+[node name="HostIPEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer"]
 margin_left = 30.0
 margin_top = 28.0
 margin_right = 230.0
@@ -255,6 +256,7 @@ margin_bottom = 161.0
 
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/MarginContainer/CenterContainer/HBoxContainer2/NameEdit" to="." method="_on_NameEdit_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Panel_host/VBoxContainer/CenterContainer/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/HostIPEdit" to="." method="_on_HostIPEdit_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
 
 [editable path="WaitingRoom"]

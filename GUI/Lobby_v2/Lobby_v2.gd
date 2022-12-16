@@ -4,7 +4,7 @@ extends Control
 
 onready var NameEdit: LineEdit = $MarginContainer/VBoxContainer/MarginContainer/CenterContainer/HBoxContainer2/NameEdit
 onready var selected_host_Port: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_host/VBoxContainer/CenterContainer2/HBoxContainer/PortEdit
-onready var selected_join_IP: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/PortEdit2
+onready var selected_join_IP: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/HostIPEdit
 onready var selected_join_Port: LineEdit = $MarginContainer/VBoxContainer/HBoxContainer/Panel_connect/VBoxContainer/CenterContainer2/GridContainer/PortEdit
 onready var light_mode: CheckButton = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/CenterContainer/VBoxContainer/CheckButton
 onready var min_spinBox: SpinBox = $WaitingRoom/VBoxContainer/CenterContainer3/HBoxContainer2/Time_box/CenterContainer/GridContainer/min_SpinBox
@@ -22,9 +22,9 @@ func _ready():
 	#$MarginContainer/HBoxContainer/Panel_host/ColorRect.connect("mouse_exited", self, "_on_Panel_host_mouse_exited")
 	#$HBoxContainer/Panel_host/ColorRect.color = Color(1, 0, 0, 1)
 	
-	# insert in NameEdit box the last name used by the player
+	# insert in NameEdit box the last name used by the player. Same for Host IP. Ports are set to default.
 	NameEdit.text = SaveGame.save_data["Player_name"]
-	selected_join_IP.text = Network.DEFAULT_IP 
+	selected_join_IP.text = SaveGame.save_data["Host_IP"]
 	selected_join_Port.text = str(Network.DEFAULT_PORT )
 	selected_host_Port.text = str(Network.DEFAULT_PORT )
 	
@@ -69,6 +69,9 @@ func _on_NameEdit_text_changed(new_text) -> void:
 	SaveGame.save_data["Player_name"] = new_text
 	SaveGame.save_game()
 
+func _on_HostIPEdit_text_changed(new_text):
+	SaveGame.save_data["Host_IP"] = new_text
+	SaveGame.save_game()
 
 func show_waiting_room() -> void:
 	$connecting_to_host.hide()
@@ -92,12 +95,12 @@ func show_waiting_room() -> void:
 	#Network.start_game()
 
 func _on_Panel_host_mouse_entered():
-	#print("entered")
+	print("entered")
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0, 144, 231, 255)
 
 
 func _on_Panel_host_mouse_exited():
-	#print("exited")
+	print("exited")
 	$MarginContainer/HBoxContainer/Panel_host/ColorRect.color = Color(0.3, 0.3, 0.3, 1)
 
 func _on_host_missing():
@@ -107,3 +110,4 @@ func _on_host_missing():
 
 func hide_pop_up():
 	$Blur.hide()
+

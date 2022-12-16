@@ -17,6 +17,7 @@ func _ready():
 
 func _on_Host_Missing_Screen_visibility_changed():
 	if visible:
+		# set the color of host player to host missing animation
 		if Network.players.has(1) and Network.players[1].has("color_number"):
 			shader_color = GlobalVariables.SHADER_COLOR_LIST[Network.players[1]["color_number"]]
 		else:

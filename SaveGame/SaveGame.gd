@@ -16,7 +16,8 @@ func get_data():
 					"Light":false,
 					"Main_vol":0,
 					"Music_vol":0,
-					"VFX_vol":0}
+					"VFX_vol":0,
+					"Host_IP":"127.0.0.1"}
 		save_game()
 	# warning-ignore:return_value_discarded
 	file.open(SAVEGAME, File.READ)
@@ -46,4 +47,7 @@ func check_values(data) -> Dictionary:
 	if not data.has("VFX_vol"):
 		print("VFX_vol not found")
 		data["VFX_vol"] = 0
+	if not data.has("Host_IP"):
+		print("Host_IP not found")
+		data["Host_IP"] = "127.0.0.1"
 	return data

@@ -9,6 +9,9 @@ onready var second_colorRect: ColorRect = get_node("CenterContainer/VBoxContaine
 onready var third_name_label: Label = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/CenterContainer/VBoxContainer/name_label")
 onready var third_score_label: Label = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/CenterContainer/VBoxContainer/score_label")
 onready var third_colorRect: ColorRect = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_3/ColorRect")
+onready var fourth_name_label: Label = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/CenterContainer/VBoxContainer/name_label")
+onready var fourth_score_label: Label = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/CenterContainer/VBoxContainer/score_label")
+onready var fourth_colorRect: ColorRect = get_node("CenterContainer/VBoxContainer/HBoxContainer/players_pannel/players_list/player_4/ColorRect")
 
 onready var restart_button: Button = get_node("CenterContainer/VBoxContainer/RestartButton")
 
@@ -20,6 +23,8 @@ var second_place_score: int = 0
 var second_place_id: int = 0
 var third_place_score: int = 0
 var third_place_id: int = 0
+var fourth_place_score: int = 0
+var fourth_place_id: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,6 +86,21 @@ func sort_players_by_score() -> void:
 		third_score_label.text = str(players[third_place_id]["score"])
 		third_colorRect.color = GlobalVariables.SHADER_COLOR_LIST[players[third_place_id]["color_number"]]
 		players.erase(third_place_id)
+		print(players)
+		
+	if not players.empty():
+		for player in players:
+			print("player: ", player, " score: ", players[player]["score"])
+			
+			if players[player]["score"] > fourth_place_score:
+				fourth_place_id = player
+				fourth_place_score = players[player]["score"]
+		print(fourth_place_id)
+		if fourth_place_id == 0: fourth_place_id = players.keys()[0]
+		fourth_name_label.text = players[fourth_place_id]["Player_name"]
+		fourth_score_label.text = str(players[fourth_place_id]["score"])
+		fourth_colorRect.color = GlobalVariables.SHADER_COLOR_LIST[players[fourth_place_id]["color_number"]]
+		players.erase(fourth_place_id)
 		print(players)
 
 func _on_RestartButton_pressed() -> void:

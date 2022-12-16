@@ -106,6 +106,8 @@ func start_game():
 				if players[_player].has("color_number"):
 					if players[_player]["color_number"] in unused_colors:
 						unused_colors.erase(players[_player]["color_number"])
+					else:
+						print("player " + _player + "is using a color that is already in use")
 			
 			#print("unused_colors: ", unused_colors)
 			players[player]["color_number"] = unused_colors[0]
