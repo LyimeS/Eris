@@ -63,10 +63,12 @@ func request_move(player_id, direction): #not hard typed function
 			rpc("object_queue_free", cell_target)
 			return update_pawn_position(pawn, cell_start, cell_target)
 		ACTOR:
-			if get_cell_pawn(cell_target).name == null: #make sure the player is still there
+			var actor = get_cell_pawn(cell_target)
+			if actor == null: #make sure the player is still there
 				print("actor null cell skipped")
+				return
 			else:
-				var pawn_name = get_cell_pawn(cell_target).name
+				var pawn_name = actor.name
 				print("Cell %s contains %s" % [cell_target, pawn_name])
 				get_parent().get_node("LowerGrid").count_cells(1)
 		OBSTACLE:
